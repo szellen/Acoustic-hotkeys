@@ -1,4 +1,5 @@
-# import tkinter
+import acoustic_stopwatch
+
 try:
     import tkinter as tk
 except ImportError:
@@ -10,7 +11,7 @@ class Timer:
         self.seconds = 0
         # label displaying time
         self.label1 = tk.Label(parent, text="Pattern detected: ", font="Arial 15")
-        self.label = tk.Label(parent, text=" --- ", font="Arial 30", width=10)
+        self.label = tk.Label(parent, text="  ", font="Arial 30", width=10)
 
         self.button = tk.Button(parent,
                                 text="Click to change text below",
@@ -23,8 +24,8 @@ class Timer:
 
     def changeText(self):
         """ change to corresponding text label if events happen"""
-        self.label['text'] = "New pattern"     
-        self.label.after(500,self.default_label)
+        self.label['text'] = acoustic_stopwatch.command 
+        self.label.after(400,self.default_label)
 
 
     def default_label(self): 
@@ -33,6 +34,7 @@ class Timer:
 
 
 if __name__ == "__main__":
+
     root = tk.Tk()
     root.title ("Tapping hotkeys") # set window title
     root.geometry('300x200') # set window size

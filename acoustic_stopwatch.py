@@ -3,8 +3,14 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as anim
 import pyautogui 
 
+try:
+    import tkinter as tk
+except ImportError:
+    import Tkinter as tk
+
 pyautogui.FAILSAFE = False
 #phyphox configuration
+# "http://192.168.0.11:8080"
 PP_ADDRESS = "http://192.168.0.11:8080"
 PP_CHANNELS = ["tindex","tlist"]
 # tlist: time in sequnse
@@ -17,6 +23,7 @@ xs = []
 # global array to save acceleration
 i =[]
 i2 =[]
+command = " NAN "
 
 
 def getSensorData():
@@ -57,7 +64,8 @@ def main():
           index = ni
           start_time = ni2
         
-          commandDetection(interval_type_list)
+          command = commandDetection(interval_type_list)
+          print (command)
 
 
 
@@ -90,7 +98,7 @@ def commandDetection(interval_type_list):
         "NSSL":four
     }
     func = switcher.get(pattern, lambda:"")
-    print (func())
+    return (func())
 
 
 def one():
@@ -103,9 +111,12 @@ def three():
     pyautogui.hotkey("ctrl", "z") 
     return "- -    - -"
 def four():
+    pyautogui.press('down')
     pyautogui.hotkey("ctrl", "v") 
     return "- - -    -"
+
+
 if __name__ == '__main__':
+
+
     main()
-
-
