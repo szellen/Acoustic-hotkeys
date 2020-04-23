@@ -64,8 +64,8 @@ def main():
           index = ni
           start_time = ni2
         
-          command = commandDetection(interval_type_list)
-          print (command)
+          commandDetection(interval_type_list)
+
 
 
 
@@ -98,25 +98,58 @@ def commandDetection(interval_type_list):
         "NSSL":four
     }
     func = switcher.get(pattern, lambda:"")
-    return (func())
+    func()
 
 
 def one():
     pyautogui.hotkey("ctrl", "a") 
-    return "- - - -"
+
+    pattern = "- - - -"
+    command = "select-all "
+
+    popup(pattern,command)
+    print (pattern)
+
 def two():
     pyautogui.hotkey("ctrl", "c") 
-    return "-    - - -"
+    
+    pattern = "-    - - -"
+    command = "copy"
+
+    popup(pattern,command)
+    print (pattern)
+
 def three():
     pyautogui.hotkey("ctrl", "z") 
-    return "- -    - -"
+    pattern = "- -     - -"
+    command = "undo"
+
+    popup(pattern,command)
+    print (pattern)
+
 def four():
     pyautogui.press('down')
     pyautogui.hotkey("ctrl", "v") 
-    return "- - -    -"
 
+    pattern = "- - -     -"
+    command = "paste"
+
+    popup(pattern,command)
+    print (pattern)
+
+def popup(pattern,command):
+    '''Display pattern message on pop up box'''
+    root = tk.Tk()
+    root.geometry('+50+50') # set window size
+    root.after(1000, lambda: root.destroy())
+
+    label_p = tk.Label(root, text = pattern, font="Arial 15") #display pattern
+    label_c = tk.Label(root, text = command, font="Arial 30") #display command
+
+    label_p.pack()
+    label_c.pack()
+
+    root.mainloop()
 
 if __name__ == '__main__':
-
-
     main()
