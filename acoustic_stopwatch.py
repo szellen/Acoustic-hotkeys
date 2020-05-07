@@ -102,19 +102,20 @@ def commandDetection(interval_type_list):
 
 
 def one():
-    pyautogui.hotkey("ctrl", "a") 
+    # pyautogui.hotkey("ctrl", "a") 
+    pyautogui.press('space')
 
     pattern = "- - - -"
-    command = "select-all "
+    command = "Start/Stop"
 
     popup(pattern,command)
     print (pattern)
 
 def two():
-    pyautogui.hotkey("ctrl", "c") 
-    
+    # pyautogui.hotkey("ctrl", "c") 
+    pyautogui.press('right')
     pattern = "-    - - -"
-    command = "copy"
+    command = "Fast Forward"
 
     popup(pattern,command)
     print (pattern)
@@ -128,11 +129,11 @@ def three():
     print (pattern)
 
 def four():
-    pyautogui.press('down')
-    pyautogui.hotkey("ctrl", "v") 
+    pyautogui.press('left')
+    # pyautogui.hotkey("ctrl", "v")  
 
     pattern = "- - -     -"
-    command = "paste"
+    command = "back"
 
     popup(pattern,command)
     print (pattern)
